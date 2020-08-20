@@ -1,0 +1,34 @@
+{
+  "name": "arctic-resigination",
+  "version": "1.0.0",
+  "description": "store front concept/practice on skills to develop a full fledge web store Back to front",
+  "main": "server.js",
+  "engines":{
+      "node":"14.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon"
+  },
+  "keywords": [],
+  "author": "Philip Gray",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-react-views": "^0.11.0",
+    "mongoose": "^5.10.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/graveslug/arctic-resigination.git"
+  },
+  "bugs": {
+    "author": "Philip Gray",
+    "url": "https://github.com/graveslug/arctic-resigination/issues"
+  },
+  "homepage": "https://github.com/graveslug/arctic-resigination#readme"
+}
