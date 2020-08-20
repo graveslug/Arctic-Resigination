@@ -1,3 +1,9 @@
+//==================
+//  Index         //
+//==================
+//the framework of the main page.
+//Landing page
+
 const React = require('react');
 const Default = require('./components/Default')
 

@@ -1,33 +1,64 @@
+//==================
+//  Dependencies  //
+//==================
+require('dotenv').config()
 const express = require('express')
 const app = express()
-
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
+const db = mongoose.connection
 
-const mongoURI = 
+//==================
+//  Port          //
+//==================
+//Allow use of Keroku's port or your own depending on the enviroment
+const PORT = process.env.PORT || 3000
 
+//==================
+//  Database`     //
+//==================
+const mongoURI = process.env.MONGO_URI || 'mongodb://localhost' + 'arcticresigination'
 
-
+//mongodb connection
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
-mongoose.connection.once('open', () => {
-  console.log('connected to mongo')
-})
+//checks error&&success
+db.on('error', (err) => console.log(err.message + 'Is mongodb not running?'))
+db.on('connected', ()=> console.log('mongod connected'))
+db.on('disconnected', ()=> console.log('mongo disconnected'))
 
-const Product = require('./models/product.js')
+//opens connection to mongod
+db.on('open', ()=>{})
 
-app.use(express.urlencoded({ extended: true }))
+//==================
+//  Middleware    //
+//==================
+//use public folder for static assests
 app.use(express.static('public'))
+// populates req.body with parsed info from forms. If no data comes from the forms it will return an empty object {}
+//The extended: false does not allow nested objected in query strings
+app.use(express.urlencoded({ extended: false }))
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
+//allows for POST,PUT, and DELETE
+app.use(methodOverride('_method'))
+
+
+
+//==================
+//  Routes        //
+//==================
+//idk what this was for.
+const Vinyl = require('./models/vinyl.js')
 
 // INDEX
 app.get('/arcticresigination', (req, res) => {
   // look up all the arcticresigination in the mongodb
   // send the arcticresigination to the Index view as a prop
-  Product.find({}, (error, allProducts) => {
-    if(allProducts){
+  Vinyl.find({}, (error, allVinyls) => {
+    if(allVinyls){
         res.render('Index', {
-          arcticresigination: allProducts,
+          arcticresigination: allVinyls,
         })
     } else {
         console.log(err)
@@ -41,9 +72,9 @@ app.get('/arcticresigination/new', (req, res) => {
 })
 // DESTROY
 app.delete('/arcticresigination/:id', (req, res)=>{
-    Product.remove({_id: req.params.id}, (error, deletedProduct)=>{
-        if (deletedProduct) {
-            console.log(deletedProduct)
+    Vinyl.remove({_id: req.params.id}, (error, deletedVinyl)=>{
+        if (deletedVinyl) {
+            console.log(deletedVinyl)
         } else {
             console.log(error)
         }
@@ -53,13 +84,13 @@ app.delete('/arcticresigination/:id', (req, res)=>{
 
 //UPDATE
 app.put('/arcticresigination/:id', (req, res) => {
-    Product.findByIdAndUpdate({_id: req.params.id}, {...req.body}, (error, updatedProduct) => {
-        if (updatedProduct) {
-            console.log(updatedProduct)
+    Vinyl.findByIdAndUpdate({_id: req.params.id}, {...req.body}, (error, updatedVinyl) => {
+        if (updatedVinyl) {
+            console.log(updatedVinyl)
         } else {
             console.log(error)
         }
-        res.redirect("/products")
+        res.redirect("/vinyls")
     })
 })
 
@@ -72,8 +103,8 @@ app.post('/arcticresigination', (req, res) => {
   } else {
     req.body.inStock = false
   }
-  Product.create(req.body, (error, createdProduct) => {
-
+  Vinyl.create(req.body, (error, createdVinyl) => {
+console.log(error)
     res.redirect('/arcticresigination')
   })
 })
@@ -81,11 +112,11 @@ app.post('/arcticresigination', (req, res) => {
 //EDIT
 //Can't edit the page as it redirects to itself.
 app.get('/arcticresigination/edit/:id', (req, res) => {
-    Product.findById(req.params._d, (error, product) => {
-        if (product) {
-            console.log(product)
+    Vinyl.findById(req.params._d, (error, vinyl) => {
+        if (vinyl) {
+            console.log(vinyl)
             res.render('Edit', {
-                product: product
+                vinyl: vinyl
             })
         } else {
             console.log(error)
@@ -95,13 +126,17 @@ app.get('/arcticresigination/edit/:id', (req, res) => {
 
 // SHOW
 app.get('/arcticresigination/:id', (req, res) => {
-  Product.findById(req.params.id, (err, foundProduct) => {
+  Vinyl.findById(req.params.id, (err, foundVinyl) => {
     res.render('Show', {
-      product: foundProduct,
+      vinyl: foundVinyl,
     })
   })
 })
 
-app.listen(3000, () => {
-  console.log('listening')
+
+//==================
+//  Listener      //
+//==================
+app.listen(PORT, () => {
+  console.log('listening on port:', PORT)
 })

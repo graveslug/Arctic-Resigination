@@ -1,3 +1,8 @@
+//============================
+//  Band Submission Schema  //
+//============================
+//The order of operations truthy and falsey form inputs for what is accepted into MongoDb
+
 const mongoose = require('mongoose');
 
 const arcticresiginationSchema = new mongoose.Schema(
@@ -15,6 +20,6 @@ const arcticresiginationSchema = new mongoose.Schema(
     timestamps: true
     });
 
-const Product = mongoose.model('Product', arcticresiginationSchema);
+const Vinyl = mongoose.model('Vinyl', arcticresiginationSchema);
 
-module.exports = Product;
+module.exports = Vinyl;

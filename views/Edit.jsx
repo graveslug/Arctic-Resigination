@@ -1,4 +1,8 @@
-//Edit Page
+//==================
+//  Edit page      //
+//==================
+//Sets up the page for editing in browser
+
 const React = require('react');
 const Default = require('./components/Default.jsx');
 

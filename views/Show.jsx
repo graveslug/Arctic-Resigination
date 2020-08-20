@@ -1,3 +1,8 @@
+//==================
+//  Show          //
+//==================
+//Single product page
+
 const React = require('react')
 const Default = require('./components/Default')
 
