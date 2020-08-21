@@ -7,7 +7,7 @@ const app = express()
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const db = mongoose.connection
-const Vinyl = require('/models/vinyl.js')
+const Vinyl = require('./models/vinyl.js')
 //==================
 //  Port          //
 //==================
