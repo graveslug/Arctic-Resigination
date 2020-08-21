@@ -45,7 +45,7 @@ app.engine('jsx', require('express-react-views').createEngine())
 app.use(methodOverride('_method'))
 
 //==================
-//  Routes        //
+//  Controller    //
 //==================
 const vinylControl = require('./controllers/vinyl.js')
 app.use('/vinyls', vinylControl)
