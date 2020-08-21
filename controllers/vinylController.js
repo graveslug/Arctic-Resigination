@@ -1,14 +1,21 @@
 //==================
+//  Dependencies  //
+//==================
+const express = require('express')
+const router = express.Router()
+const Vinyl = require('../models/vinyl.js')
+
+
+//==================
 //  Routes        //
 //==================
 
-
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.redirect('/arcticresigination')
 })
 
 // INDEX
-app.get('/arcticresigination', (req, res) => {
+router.get('/arcticresigination', (req, res) => {
   // look up all the arcticresigination in the mongodb
   // send the arcticresigination to the Index view as a prop
   Vinyl.find({}, (error, allVinyls) => {
@@ -23,11 +30,11 @@ app.get('/arcticresigination', (req, res) => {
 })
 
 // NEW
-app.get('/arcticresigination/new', (req, res) => {
+router.get('/arcticresigination/new', (req, res) => {
   res.render('New')
 })
 // DESTROY
-app.delete('/arcticresigination/:id', (req, res)=>{
+router.delete('/arcticresigination/:id', (req, res)=>{
     Vinyl.remove({_id: req.params.id}, (error, deletedVinyl)=>{
         if (deletedVinyl) {
             console.log(deletedVinyl)
@@ -39,7 +46,7 @@ app.delete('/arcticresigination/:id', (req, res)=>{
 })
 
 //UPDATE
-app.put('/arcticresigination/:id', (req, res) => {
+router.put('/arcticresigination/:id', (req, res) => {
     Vinyl.findByIdAndUpdate({_id: req.params.id}, {...req.body}, (error, updatedVinyl) => {
         if (updatedVinyl) {
             console.log(updatedVinyl)
@@ -51,7 +58,7 @@ app.put('/arcticresigination/:id', (req, res) => {
 })
 
 // CREATE
-app.post('/arcticresigination', (req, res) => {
+router.post('/arcticresigination', (req, res) => {
   // console.log(req.body)
 
   if (req.body.inStock === 'on') {
@@ -67,7 +74,7 @@ console.log(error)
 
 //EDIT
 //Can't edit the page as it redirects to itself.
-app.get('/arcticresigination/edit/:id', (req, res) => {
+router.get('/arcticresigination/edit/:id', (req, res) => {
     Vinyl.findById(req.params._d, (error, vinyl) => {
         if (vinyl) {
             console.log(vinyl)
@@ -81,10 +88,13 @@ app.get('/arcticresigination/edit/:id', (req, res) => {
 })
 
 // SHOW
-app.get('/arcticresigination/:id', (req, res) => {
+router.get('/arcticresigination/:id', (req, res) => {
   Vinyl.findById(req.params.id, (err, foundVinyl) => {
     res.render('Show', {
       vinyl: foundVinyl,
     })
   })
 })
+
+//export router
+module.exports = router
