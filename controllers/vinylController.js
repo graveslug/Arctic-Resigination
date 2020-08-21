@@ -20,7 +20,7 @@ router.get('/arcticresigination', (req, res) => {
   // send the arcticresigination to the Index view as a prop
   Vinyl.find({}, (error, allVinyls) => {
     if(allVinyls){
-        res.render('Index', {
+        res.render('vinyls/Index', {
           arcticresigination: allVinyls,
         })
     } else {
