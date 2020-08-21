@@ -7,11 +7,11 @@ const app = express()
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const db = mongoose.connection
-
+const Vinyl = require('../models/vinyl.js')
 //==================
 //  Port          //
 //==================
-//Allow use of Keroku's port or your own depending on the enviroment
+//Allow use of heroku's port or your own depending on the enviroment
 const PORT = process.env.PORT || 3000
 
 //==================
@@ -48,11 +48,10 @@ app.use(methodOverride('_method'))
 //==================
 //  Routes        //
 //==================
-//idk what this was for.
-const Vinyl = require('./models/vinyl.js')
+
 
 app.get('/', (req, res) => {
-    res.redirect('/arctic-resigination')
+    res.redirect('/arcticresigination')
 })
 
 // INDEX

@@ -2,7 +2,7 @@
   "name": "arctic-resigination",
   "version": "1.0.0",
   "description": "store front concept/practice on skills to develop a full fledge web store Back to front",
-  "main": "/app/server.js",
+  "main": "server.js",
   "engines": {
     "node": "14.4.0"
   },
