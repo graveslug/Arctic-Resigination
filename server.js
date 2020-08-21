@@ -17,7 +17,8 @@ const PORT = process.env.PORT || 3000
 //==================
 //  Database`     //
 //==================
-const mongoURI = process.env.MONGO_URI || 'mongodb://localhost' + 'arcticresigination'
+const mongoURI = process.env.MONGO_URI
+//|| 'mongodb://localhost' + 'arcticresigination'
 
 //mongodb connection
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
