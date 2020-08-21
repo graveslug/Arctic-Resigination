@@ -9,14 +9,14 @@ const Default = require('./components/Default')
 
 class Index extends React.Component {
   render() {
-      const items = this.props.arcticresigination
+      const vinyls = this.props.arcticresigination
     return (
         <Default>
           <div>
 
             <div className='container'>
             <h1 className='ml-4 mt-4 title is-4 has-text-weight-light'> Records of Sorrow </h1>
-              {items.map((product, i) => {
+              {vinyls.map((product, i) => {
                 return (
                   <div className='card is-inline-block mt-1 mx-3 box px-0 pt-0' style={{width: 270}} key={product._id}>
                 <div className='card-image'>

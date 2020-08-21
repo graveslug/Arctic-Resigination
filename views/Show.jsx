@@ -1,7 +1,7 @@
 //==================
 //  Show          //
 //==================
-//Single product page
+//Single vinyl page
 
 const React = require('react')
 const Default = require('./components/Default')
@@ -9,37 +9,37 @@ const Default = require('./components/Default')
 class Show extends React.Component {
   render() {
       const oneStock = this.props.oneStock
-      const product = this.props.product
+      const vinyl = this.props.vinyl
     return (
         <Default>
       <div className='container box'>
       {/*type error that says it cannot read the name of undefined. Line below which is odd because the name does render. It seems to be correlated with the edit button.*/}
-        <h1 className='title is-4 has-text-weight-light'>{product.name}</h1>
-        <div className='subtitle is-5'>{product.album}</div><br/>
+        <h1 className='title is-4 has-text-weight-light'>{vinyl.name}</h1>
+        <div className='subtitle is-5'>{vinyl.album}</div><br/>
         <br/>
 
         <div className='card-image'>
             <figure className='image is-400x400'>
-            <img src={`${product.image}`} />
+            <img src={`${vinyl.image}`} />
            </figure>
         </div>
 
             <div className='card-content'>
-            <div>${product.price}</div>
+            <div>${vinyl.price}</div>
             <br/>
-            <p>{product.vinylColor}</p>
+            <p>{vinyl.vinylColor}</p>
             <br/>
-            <a className='button is-outline is-small' href={`/arcticresigination/${product.name}`}>Add To Cart</a>
+            <a className='button is-outline is-small' href={`/arcticresigination/${vinyl.name}`}>Add To Cart</a>
             <br />
             <br />
-            <p>{product.currentQuantity} Copies left</p><
+            <p>{vinyl.currentQuantity} Copies left</p><
             br/>
-                <p>{product.inStock
+                <p>{vinyl.inStock
                     ? ` - in stock`
                     : ` - out of Stock`}
                 </p>
                 <br/>
-                <p>{product.description}</p>
+                <p>{vinyl.description}</p>
                 <br/>
 
             </div>
@@ -48,9 +48,9 @@ class Show extends React.Component {
 
           <a href={`/arcticresigination/`}>Back to store</a><br/>
           {/*Doesn't delete the page. I haven't looked deeper into the why part*/}
-          <form action={`/arcticresigination/${product.name}?_method=DELETE`} method='POST'><input className='button' type='submit' value={`DELETE`} disabled/></form>
-          {/*This is the edit button. I've tried changing the put method part to a few different things but nothing turned up. For both the above and below i've tried ${product._id} and also without the underscore. Redirects client to the same page. */}
-           <form action={`/arcticresigination/${product._id}?_method=EDIT`} method='PUT'><input className='button' type='submit' value={`EDIT`} /></form>
+          <form action={`/arcticresigination/${vinyl.name}?_method=DELETE`} method='POST'><input className='button' type='submit' value={`DELETE`} disabled/></form>
+          {/*This is the edit button. I've tried changing the put method part to a few different things but nothing turned up. For both the above and below i've tried ${vinyl._id} and also without the underscore. Redirects client to the same page. */}
+           <form action={`/arcticresigination/${vinyl._id}?_method=EDIT`} method='PUT'><input className='button' type='submit' value={`EDIT`} /></form>
       </div>
       </Default>
     )
