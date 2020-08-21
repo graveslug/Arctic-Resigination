@@ -45,15 +45,14 @@ app.engine('jsx', require('express-react-views').createEngine())
 app.use(methodOverride('_method'))
 
 
-
 //==================
 //  Routes        //
 //==================
 
 
-// app.get('/', (req, res) => {
-//     res.redirect('/arcticresigination')
-// })
+app.get('/', (req, res) => {
+    res.redirect('/arcticresigination')
+})
 
 // INDEX
 app.get('/arcticresigination', (req, res) => {
