@@ -8,12 +8,12 @@ const Default = require('./components/Default.jsx');
 
 class Edit extends React.Component {
             render() {
-                const item = this.props.arcticresigination
+                const item = this.props.vinyls
                 return (
                         <Default>
                             <div>
                                 <h1>Edit page</h1>
-                                <form action={`/arcticresigination/$item._id}?_method=PUT`} method='POST'>
+                                <form action={`/vinyls/$item._id}?_method=PUT`} method='POST'>
                                     Name: <input type='text' name='name' value={item.name} />
                                     <br />
                                     Album: <input type='text' name='album' value={item.album} />
@@ -31,7 +31,7 @@ class Edit extends React.Component {
                                     In Stock: <input type='checkbox' name='inStock' onchecked='default' />
                                     <br />
                                     <input className='button is-outline is-small' type='submit' name=' value='Submit' />
-                                    <a href={`/arcticresigination/`}>Back to store</a><br/>
+                                    <a href={`/vinyls/`}>Back to store</a><br/>
                                 </form>
                             </div>
                         </Default>

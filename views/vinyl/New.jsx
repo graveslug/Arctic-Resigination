@@ -13,7 +13,7 @@ class New extends React.Component {
             <div ClassName='container'>
                 <h1>New Product page</h1>
                 {/*Didn't get a chance to edit this page to match the rest of the site but it was going to be a table setup through bulma. The page submission does work so thats a fine and it does push into mongo so double win there.*/}
-                <form action='/arcticresigination' method='POST'>
+                <form action='/vinyls' method='POST'>
                       Name: <input type='text' name='name' />
                       <br />
                       Album: <input type='text' name='album' />
@@ -31,7 +31,7 @@ class New extends React.Component {
                       In Stock: <input type='checkbox' name='inStock' onChange='defaultChecked' />
                       <br />
                       <input className='button is-outline is-small' type='submit' name='' value='Submit' />
-                      <a href={`/arcticresigination/`}>Back to store</a><br/>
+                      <a href={`/vinyls/`}>Back to store</a><br/>
                 </form>
             </div>
       </Default>

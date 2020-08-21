@@ -5,7 +5,7 @@
 
 const mongoose = require('mongoose');
 
-const arcticresiginationSchema = new mongoose.Schema(
+const vinylSchema = new mongoose.Schema(
     {
         name: { type: String, required: true },
         album: { type: String, required: true },
@@ -20,6 +20,6 @@ const arcticresiginationSchema = new mongoose.Schema(
     timestamps: true
     });
 
-const Vinyl = mongoose.model('Vinyl', arcticresiginationSchema);
+const Vinyl = mongoose.model('Vinyl', vinylSchema);
 
 module.exports = Vinyl;
