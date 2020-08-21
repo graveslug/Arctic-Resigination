@@ -16,21 +16,21 @@ class Index extends React.Component {
 
             <div className='container'>
             <h1 className='ml-4 mt-4 title is-4 has-text-weight-light'> Records of Sorrow </h1>
-              {vinyls.map((product, i) => {
+              {vinyls.map((record, i) => {
                 return (
-                  <div className='card is-inline-block mt-1 mx-3 box px-0 pt-0' style={{width: 270}} key={product._id}>
+                  <div className='card is-inline-block mt-1 mx-3 box px-0 pt-0' style={{width: 270}} key={record._id}>
                 <div className='card-image'>
                     <figure className='image is-4by3'>
-                    <a href={`/arcticresigination/${product._id}`}><img src={`${product.image}`} /></a>
+                    <a href={`/arcticresigination/${record._id}`}><img src={`${record.image}`} /></a>
                    </figure>
                 </div>
 
                 <div className='card-content'>
                     <p className='title is-6'>
-                     {product.name}
+                     {record.name}
                      </p>
-                     <p className='subtitle is-7'>${product.price}</p>
-                     <p className='subtitle is-7'>{product.inStock
+                     <p className='subtitle is-7'>${record.price}</p>
+                     <p className='subtitle is-7'>{record.inStock
                        ? ` - In Stock`
                        : ` - Out of Stock`}</p>
                 </div>
