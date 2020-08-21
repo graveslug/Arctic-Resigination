@@ -47,7 +47,7 @@ app.use(methodOverride('_method'))
 //==================
 //  Controller    //
 //==================
-const vinylControl = require('./controllers/vinyl.js')
+const vinylControl = require('./controllers/vinylController.js')
 app.use('/vinyls', vinylControl)
 
 
