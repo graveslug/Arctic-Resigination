@@ -52,7 +52,7 @@ app.use(methodOverride('_method'))
 const Vinyl = require('./models/vinyl.js')
 
 app.get('/', (req, res) => {
-    res.redirect('/arcticresigination')
+    res.redirect('/arctic-resigination')
 })
 
 // INDEX
