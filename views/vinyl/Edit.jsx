@@ -13,7 +13,7 @@ class Edit extends React.Component {
                         <Default>
                             <div>
                                 <h1>Edit page</h1>
-                                <form action={`/vinyls/$item._id}?_method=PUT`} method='POST'>
+                                <form action={`/records/$item._id}?_method=PUT`} method='POST'>
                                     Name: <input type='text' name='name' value={item.name} />
                                     <br />
                                     Album: <input type='text' name='album' value={item.album} />
@@ -31,7 +31,7 @@ class Edit extends React.Component {
                                     In Stock: <input type='checkbox' name='inStock' onchecked='default' />
                                     <br />
                                     <input className='button is-outline is-small' type='submit' name=' value='Submit' />
-                                    <a href={`/vinyls/`}>Back to store</a><br/>
+                                    <a href={`/records/`}>Back to store</a><br/>
                                 </form>
                             </div>
                         </Default>

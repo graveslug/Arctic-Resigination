@@ -2,7 +2,6 @@
 //  Default       //
 //==================
 //General layout of all pages
-
 const React = require('react');
 
 class Default extends React.Component {
@@ -28,10 +27,10 @@ class Default extends React.Component {
                     {/*Doesnt work but I wanted to keep it as a concept*/}
                     <div id='navbarBasicExample' className='navbar-menu'>
                         <div className='navbar-start'>
-                            <a href='/arcticresigination' className='navbar-item ml-2'>
+                            <a href='/records' className='navbar-item ml-2'>
                                 || Return Home
                             </a>
-                            <a href='/arcticresigination/new' className='navbar-item'>
+                            <a href='/records/new' className='navbar-item'>
                                 || submit record ||
                             </a>
 

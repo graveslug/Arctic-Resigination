@@ -5,7 +5,7 @@
 //Landing page
 
 const React = require('react');
-const Default = require('../components/Default')
+const Default = require('./components/Default')
 
 class Index extends React.Component {
   render() {
@@ -21,7 +21,7 @@ class Index extends React.Component {
                   <div className='card is-inline-block mt-1 mx-3 box px-0 pt-0' style={{width: 270}} key={record._id}>
                 <div className='card-image'>
                     <figure className='image is-4by3'>
-                    <a href={`/vinyl/${record._id}`}><img src={`${record.image}`} /></a>
+                    <a href={`/records/${record._id}`}><img src={`${record.image}`} /></a>
                    </figure>
                 </div>
 

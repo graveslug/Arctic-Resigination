@@ -30,35 +30,36 @@ router.get('/', (req, res) => {
 })
 
 // NEW
-router.get('/vinyls/new', (req, res) => {
-  res.render('New')
+router.get('/records/new', (req, res) => {
+  res.render('./vinyl/New')
 })
+
 // DESTROY
-router.delete('/vinyls/:id', (req, res)=>{
+router.delete('/records/:id', (req, res)=>{
     Vinyl.remove({_id: req.params.id}, (error, deletedVinyl)=>{
         if (deletedVinyl) {
             console.log(deletedVinyl)
         } else {
             console.log(error)
         }
-        res.redirect('/vinyls')
+        res.redirect('/records')
     })
 })
 
 //UPDATE
-router.put('/vinyls/:id', (req, res) => {
+router.put('/records/:id', (req, res) => {
     Vinyl.findByIdAndUpdate({_id: req.params.id}, {...req.body}, (error, updatedVinyl) => {
         if (updatedVinyl) {
             console.log(updatedVinyl)
         } else {
             console.log(error)
         }
-        res.redirect("/vinyls")
+        res.redirect("/records")
     })
 })
 
 // CREATE
-router.post('/vinyls', (req, res) => {
+router.post('/records', (req, res) => {
   // console.log(req.body)
 
   if (req.body.inStock === 'on') {
@@ -68,17 +69,17 @@ router.post('/vinyls', (req, res) => {
   }
   Vinyl.create(req.body, (error, createdVinyl) => {
 console.log(error)
-    res.redirect('/vinyls')
+    res.redirect('/records')
   })
 })
 
 //EDIT
 //Can't edit the page as it redirects to itself.
-router.get('/vinyls/edit/:id', (req, res) => {
+router.get('/records/edit/:id', (req, res) => {
     Vinyl.findById(req.params._d, (error, vinyl) => {
         if (vinyl) {
             console.log(vinyl)
-            res.render('Edit', {
+            res.render('./vinyl/Edit', {
                 vinyl: vinyl
             })
         } else {
@@ -88,9 +89,10 @@ router.get('/vinyls/edit/:id', (req, res) => {
 })
 
 // SHOW
-router.get('/vinyls/:id', (req, res) => {
+router.get('/records/:id', (req, res) => {
   Vinyl.findById(req.params.id, (err, foundVinyl) => {
-    res.render('Show', {
+      console.log(Vinyl)
+    res.render('vinyl/Show', {
       vinyl: foundVinyl,
     })
   })
