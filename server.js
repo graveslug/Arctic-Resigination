@@ -51,6 +51,10 @@ app.use(methodOverride('_method'))
 //idk what this was for.
 const Vinyl = require('./models/vinyl.js')
 
+app.get('/', (req, res) => {
+    res.redirect('/arcticresigination')
+})
+
 // INDEX
 app.get('/arcticresigination', (req, res) => {
   // look up all the arcticresigination in the mongodb
