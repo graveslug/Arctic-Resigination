@@ -10,17 +10,17 @@ const Vinyl = require('../models/vinyl.js')
 //  Routes        //
 //==================
 
-router.get('/', (req, res) => {
-    res.redirect('/vinyls')
-})
+// router.get('/', (req, res) => {
+//     res.redirect('/vinyls')
+// })
 
 // INDEX
-router.get('/vinyls', (req, res) => {
+router.get('/', (req, res) => {
   // look up all the vinyls in the mongodb
   // send the vinyls to the Index view as a prop
   Vinyl.find({}, (error, allVinyls) => {
     if(allVinyls){
-        res.render('Index', {
+        res.render('./vinyl/Index', {
           vinyl: allVinyls,
         })
     } else {
