@@ -50,9 +50,9 @@ app.use(methodOverride('_method'))
 //==================
 
 
-app.get('/', (req, res) => {
-    res.redirect('/arcticresigination')
-})
+// app.get('/', (req, res) => {
+//     res.redirect('/arcticresigination')
+// })
 
 // INDEX
 app.get('/arcticresigination', (req, res) => {
