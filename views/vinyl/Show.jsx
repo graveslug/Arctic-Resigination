@@ -4,7 +4,7 @@
 //Single oneVinyl page
 
 const React = require('react')
-const Default = require('./components/Default')
+const Default = require('../components/Default')
 
 class Show extends React.Component {
   render() {

@@ -9,9 +9,9 @@ const Vinyl = require('../models/vinyl.js')
 //==================
 //  Routes        //
 //==================
-
+//
 // router.get('/', (req, res) => {
-//     res.redirect('/vinyls')
+//     res.redirect('/records')
 // })
 
 // INDEX
@@ -30,12 +30,12 @@ router.get('/', (req, res) => {
 })
 
 // NEW
-router.get('/records/new', (req, res) => {
+router.get('/new', (req, res) => {
   res.render('./vinyl/New')
 })
 
 // DESTROY
-router.delete('/records/:id', (req, res)=>{
+router.delete('/:id', (req, res)=>{
     Vinyl.remove({_id: req.params.id}, (error, deletedVinyl)=>{
         if (deletedVinyl) {
             console.log(deletedVinyl)
@@ -47,7 +47,7 @@ router.delete('/records/:id', (req, res)=>{
 })
 
 //UPDATE
-router.put('/records/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     Vinyl.findByIdAndUpdate({_id: req.params.id}, {...req.body}, (error, updatedVinyl) => {
         if (updatedVinyl) {
             console.log(updatedVinyl)
@@ -59,7 +59,7 @@ router.put('/records/:id', (req, res) => {
 })
 
 // CREATE
-router.post('/records', (req, res) => {
+router.post('/', (req, res) => {
   // console.log(req.body)
 
   if (req.body.inStock === 'on') {
@@ -75,7 +75,7 @@ console.log(error)
 
 //EDIT
 //Can't edit the page as it redirects to itself.
-router.get('/records/edit/:id', (req, res) => {
+router.get('/edit/:id', (req, res) => {
     Vinyl.findById(req.params._d, (error, vinyl) => {
         if (vinyl) {
             console.log(vinyl)
@@ -89,12 +89,17 @@ router.get('/records/edit/:id', (req, res) => {
 })
 
 // SHOW
-router.get('/records/:id', (req, res) => {
+router.get('/:id', (req, res) => {
+    console.log(req.params.id)
   Vinyl.findById(req.params.id, (err, foundVinyl) => {
-      console.log(Vinyl)
+      if(err) {
+          console.log('There was an error')
+          res.sendStatus(500)
+      } else {
     res.render('vinyl/Show', {
       vinyl: foundVinyl,
     })
+}
   })
 })
 

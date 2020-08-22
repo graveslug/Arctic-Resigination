@@ -4,7 +4,7 @@
 //Sets up the page for editing in browser
 
 const React = require('react');
-const Default = require('./components/Default.jsx');
+const Default = require('../components/Default.jsx');
 
 class Edit extends React.Component {
             render() {

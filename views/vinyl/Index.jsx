@@ -5,7 +5,7 @@
 //Landing page
 
 const React = require('react');
-const Default = require('./components/Default')
+const Default = require('../components/Default')
 
 class Index extends React.Component {
   render() {
@@ -16,21 +16,21 @@ class Index extends React.Component {
 
             <div className='container'>
             <h1 className='ml-4 mt-4 title is-4 has-text-weight-light'> Records of Sorrow </h1>
-              {vinyls.map((record, i) => {
+              {vinyls.map((vinyl, i) => {
                 return (
-                  <div className='card is-inline-block mt-1 mx-3 box px-0 pt-0' style={{width: 270}} key={record._id}>
+                  <div className='card is-inline-block mt-1 mx-3 box px-0 pt-0' style={{width: 270}} key={vinyl._id}>
                 <div className='card-image'>
                     <figure className='image is-4by3'>
-                    <a href={`/records/${record._id}`}><img src={`${record.image}`} /></a>
+                    <a href={`/records/${vinyl._id}`}><img src={`${vinyl.image}`} /></a>
                    </figure>
                 </div>
 
                 <div className='card-content'>
                     <p className='title is-6'>
-                     {record.name}
+                     {vinyl.name}
                      </p>
-                     <p className='subtitle is-7'>${record.price}</p>
-                     <p className='subtitle is-7'>{record.inStock
+                     <p className='subtitle is-7'>${vinyl.price}</p>
+                     <p className='subtitle is-7'>{vinyl.inStock
                        ? ` - In Stock`
                        : ` - Out of Stock`}</p>
                 </div>

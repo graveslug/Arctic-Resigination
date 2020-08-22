@@ -4,7 +4,7 @@
 //Form submission for client
 
 const React = require('react');
-const Default = require('./components/Default')
+const Default = require('../components/Default')
 
 class New extends React.Component {
   render() {
