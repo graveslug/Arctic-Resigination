@@ -9,10 +9,7 @@ const Vinyl = require('../models/vinyl.js')
 //==================
 //  Routes        //
 //==================
-//
-// router.get('/', (req, res) => {
-//     res.redirect('/records')
-// })
+
 
 // INDEX
 router.get('/', (req, res) => {
@@ -20,18 +17,18 @@ router.get('/', (req, res) => {
   // send the vinyls to the Index view as a prop
   Vinyl.find({}, (error, allVinyls) => {
     if(allVinyls){
-        res.render('./vinyl/Index', {
+        res.render('vinyl/Index', {
           vinyl: allVinyls,
         })
     } else {
-        console.log(err)
+        console.log('index route:' +error.message)
     }
   })
 })
 
 // NEW
 router.get('/new', (req, res) => {
-  res.render('./vinyl/New')
+  res.render('vinyl/New')
 })
 
 // DESTROY
@@ -40,7 +37,7 @@ router.delete('/:id', (req, res)=>{
         if (deletedVinyl) {
             console.log(deletedVinyl)
         } else {
-            console.log(error)
+            console.log('destroy route:' + error.message)
         }
         res.redirect('/records')
     })
@@ -52,7 +49,7 @@ router.put('/:id', (req, res) => {
         if (updatedVinyl) {
             console.log(updatedVinyl)
         } else {
-            console.log(error)
+            console.log('update route:' + error.message)
         }
         res.redirect("/records")
     })
@@ -68,22 +65,20 @@ router.post('/', (req, res) => {
     req.body.inStock = false
   }
   Vinyl.create(req.body, (error, createdVinyl) => {
-console.log(error)
-    res.redirect('/records')
+      error ? res.send('create route:' + error.message) : res.redirect('/records')
   })
 })
 
 //EDIT
-//Can't edit the page as it redirects to itself.
-router.get('/edit/:id', (req, res) => {
-    Vinyl.findById(req.params._d, (error, vinyl) => {
+router.get('/:id/edit', (req, res) => {
+    Vinyl.findById(req.params._id, (error, vinyl) => {
         if (vinyl) {
             console.log(vinyl)
-            res.render('./vinyl/Edit', {
+            res.render('vinyl/Edit', {
                 vinyl: vinyl
             })
         } else {
-            console.log(error)
+            console.log('edit route:' + error.message)
         }
     })
 })
@@ -91,9 +86,9 @@ router.get('/edit/:id', (req, res) => {
 // SHOW
 router.get('/:id', (req, res) => {
     console.log(req.params.id)
-  Vinyl.findById(req.params.id, (err, foundVinyl) => {
-      if(err) {
-          console.log('There was an error')
+  Vinyl.findById(req.params.id, (error, foundVinyl) => {
+      if(error) {
+          console.log('show route:' + error.message)
           res.sendStatus(500)
       } else {
     res.render('vinyl/Show', {

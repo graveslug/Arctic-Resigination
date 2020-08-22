@@ -47,9 +47,20 @@ class Show extends React.Component {
 
           <a href={`/records/`}>Back to store</a><br/>
           {/*Doesn't delete the page. I haven't looked deeper into the why part*/}
-          <form action={`/records/${oneVinyl.name}?_method=DELETE`} method='POST'><input className='button' type='submit' value={`DELETE`} disabled/></form>
+          <form
+            action={`/records/${oneVinyl._id}?_method=DELETE`}
+            method='POST'><input
+            className='button' type='submit' value={`DELETE`} disabled/>
+          </form>
           {/*This is the edit button. I've tried changing the put method part to a few different things but nothing turned up. For both the above and below i've tried ${oneVinyl._id} and also without the underscore. Redirects client to the same page. */}
-           <form action={`/records/${oneVinyl._id}?_method=EDIT`} method='PUT'><input className='button' type='submit' value={`EDIT`} /></form>
+           <form
+            action={`/records/${oneVinyl._id}?_method=PUT`}
+            method='POST'>
+                <input
+                className='button'
+                type='submit'
+                value={`EDIT`} />
+            </form>
       </div>
       </Default>
     )
