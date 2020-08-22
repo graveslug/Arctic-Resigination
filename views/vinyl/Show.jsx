@@ -54,7 +54,7 @@ class Show extends React.Component {
           </form>
           {/*This is the edit button. I've tried changing the put method part to a few different things but nothing turned up. For both the above and below i've tried ${oneVinyl._id} and also without the underscore. Redirects client to the same page. */}
            <form
-            action={`/records/${oneVinyl._id}?_method=PUT`}
+            action={`/records/${oneVinyl._id}/edit`}
             method='POST'>
                 <input
                 className='button'
