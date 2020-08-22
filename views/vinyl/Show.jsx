@@ -12,7 +12,6 @@ class Show extends React.Component {
     return (
         <Default>
       <div className='container box'>
-      {/*type error that says it cannot read the name of undefined. Line below which is odd because the name does render. It seems to be correlated with the edit button.*/}
         <h1 className='title is-4 has-text-weight-light'>{oneVinyl.name}</h1>
         <div className='subtitle is-5'>{oneVinyl.album}</div><br/>
         <br/>
@@ -46,13 +45,13 @@ class Show extends React.Component {
 
 
           <a href={`/records/`}>Back to store</a><br/>
-          {/*Doesn't delete the page. I haven't looked deeper into the why part*/}
+          
           <form
             action={`/records/${oneVinyl._id}?_method=DELETE`}
             method='POST'><input
             className='button' type='submit' value={`DELETE`} disabled/>
           </form>
-          {/*This is the edit button. I've tried changing the put method part to a few different things but nothing turned up. For both the above and below i've tried ${oneVinyl._id} and also without the underscore. Redirects client to the same page. */}
+
            <a href={`/records/${oneVinyl._id}/edit`}>Edit</a>
       </div>
       </Default>

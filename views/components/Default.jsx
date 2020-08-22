@@ -18,14 +18,14 @@ class Default extends React.Component {
                 <nav className='navbar is-black' role='navigation' aria-label='main navigation'>
                     <div className='navbar-brand'>
                     <h3 className='mt-4 ml-4'>Arctic Resignation</h3>
-                            <a role='button' className='navbar-burger burger' aria-label='menu' aria-expanded='false' data-target='navbarBasicExample'>
+                            <a role='button' className='navbar-burger burger' aria-label='menu' aria-expanded='false' data-target='navMenu'>
                             <span aria-hidden='true'></span>
                             <span aria-hidden='true'></span>
                             <span aria-hidden='true'></span>
                         </a>
                     </div>
                     {/*Doesnt work but I wanted to keep it as a concept*/}
-                    <div id='navbarBasicExample' className='navbar-menu'>
+                    <div id='navMenu' className='navbar-menu'>
                         <div className='navbar-start'>
                             <a href='/records' className='navbar-item ml-2'>
                                 || Return Home
