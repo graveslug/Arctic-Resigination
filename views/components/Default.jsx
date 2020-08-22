@@ -31,9 +31,6 @@ class Default extends React.Component {
                             <a href='/records' className='navbar-item ml-2'>
                                 || Return Home
                             </a>
-                            <a href='/records/new' className='navbar-item'>
-                                || submit record ||
-                            </a>
 
                             <div className='navbar-item has-dropdown is-hoverable'>
                                 <a className='navbar-link'>
@@ -42,17 +39,17 @@ class Default extends React.Component {
 
                             <div className='navbar-dropdown'>
                                 <a className='navbar-item'>
-                                    About
+                                    About Us
+                                </a>
+                                <a href='/records/new' className='navbar-item'>
+                                    Submit Your Record
                                 </a>
                                 <a className='navbar-item'>
-                                    Submissions
-                                </a>
-                                <a className='navbar-item'>
-                                    Contact
+                                    Reach Out
                                 </a>
                             <hr className='navbar-divider'/>
                                 <a className='navbar-item'>
-                                    Report an issue
+                                    Report a Problem
                                 </a>
                             </div>
                             </div>
