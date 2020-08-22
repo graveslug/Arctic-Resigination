@@ -24,7 +24,7 @@ class Edit extends React.Component {
                                     <br />
                                     Price: <input type='number' name='price' defaultValue={item.price}/>
                                     <br/>
-                                    Quantity: <input type='number' name='currentQuantity' defaultValue={item.quantity} />
+                                    Quantity: <input type='number' name='currentQuantity' defaultValue={item.currentQuantity} />
                                     <br />
                                     Description: <input type='text' name='description' defaultValue={item.description} />
                                     <br />

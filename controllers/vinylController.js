@@ -71,7 +71,7 @@ router.post('/', (req, res) => {
 
 //EDIT
 router.get('/:id/edit', (req, res) => {
-    Vinyl.findById(req.params._id, (error, vinyl) => {
+    Vinyl.findById(req.params.id, (error, vinyl) => {
         if (vinyl) {
             console.log(vinyl)
             res.render('vinyl/Edit', {
