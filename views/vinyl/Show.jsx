@@ -45,7 +45,7 @@ class Show extends React.Component {
 
 
           <a href={`/records/`}>Back to store</a><br/>
-          
+
           <form
             action={`/records/${oneVinyl._id}?_method=DELETE`}
             method='POST'><input

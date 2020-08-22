@@ -3,7 +3,7 @@
 //==================
 //General layout of all pages
 const React = require('react');
-const navBar = require('./utilities/navBar.js')
+// const navBar = require('/utilities/navBar.js')
 
 class Default extends React.Component {
     render() {
@@ -75,7 +75,7 @@ class Default extends React.Component {
                     <footer>
 
                     </footer>
-                    <script src='/utilities/navBar.js'></script>
+                    //<script src='/utilities/navBar'></script>
                 </body>
             </html>
         )
