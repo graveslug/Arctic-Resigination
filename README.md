@@ -1,3 +1,11 @@
+#INDEX
+concept
+Toolbox
+roadblocks
+thank you
+
+
+
 # arctic-resigination
 store front concept/practice on skills to develop a full fledge web store Back to front
 
@@ -24,3 +32,14 @@ Node
 4) edit page was interesting to fix. I had a slight route problem where *Vinyl.findById(req.params._id, (error, vinyl)* should've been written as *Vinyl.findById(req.params.id, (error, vinyl)* being the under score in *_id*. This fixed one problem. The other problem was how I was handling the button/link for edit. Instead of the following:
 <form action={`/records/${oneVinyl._id}/edit`} method='POST'>
 <input className='button' type='submit value={`EDIT`} /> </form> which was only causing a form action to take place and not actually bring me to the edit page. Which is to say that I was only redirecting myself back to my records page instead of my edit page due to the show route setup. So I changed the previous to the following: <a href={`/records/${oneVinyl._id}/edit`}>Edit</a> This simply links me to the edit page of the current id.
+
+
+#Thank you for your help
+Philip Gray
+Viktor Moberg
+Francesco Vertemati
+Mike Hansen
+Neil Freeman
+Ira Herman
+Arthur Bernier Jr
+The Endless Amount of Albums I burned Through
