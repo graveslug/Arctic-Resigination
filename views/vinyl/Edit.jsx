@@ -28,7 +28,7 @@ class Edit extends React.Component {
                                     <br />
                                     Description: <input type='text' name='description' defaultValue={item.description} />
                                     <br />
-                                    In Stock: <input type='checkbox' name='inStock' onchecked='default' />
+                                    In Stock: <input type='checkbox' name='inStock' onChecked='default' />
                                     <br />
                                     <input className='button is-outline is-small' type='submit' name='' value='Submit' />
                                     <a href={`/records/`}>Back to store</a><br/>

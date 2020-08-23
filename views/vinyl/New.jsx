@@ -10,7 +10,7 @@ class New extends React.Component {
   render() {
     return (
         <Default>
-            <div ClassName='container'>
+            <div className='container'>
                 <h1>New Product page</h1>
                 {/*Didn't get a chance to edit this page to match the rest of the site but it was going to be a table setup through bulma. The page submission does work so thats a fine and it does push into mongo so double win there.*/}
                 <form action='/records' method='POST'>
