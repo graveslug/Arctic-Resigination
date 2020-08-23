@@ -47,7 +47,9 @@ app.use(methodOverride('_method'))
 //==================
 //  Controller    //
 //==================
+//calls for the vinylController
 const vinylControl = require('./controllers/vinylController.js')
+//sets records as the ViewPath
 app.use('/records', vinylControl)
 
 
