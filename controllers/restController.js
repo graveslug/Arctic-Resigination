@@ -7,7 +7,7 @@ module.exports = function({Model, ViewPath, Router, booleanKey, /*pluralizedView
     Router.get('/', (req, res) => {
         //finds all models within Model
         Model.find({}, (error, allModels) =>{
-            //renders the pathto index
+            //renders the pat to index
             res.render(`${ViewPath}/Index`, {
                 [ViewPath]: allModels
             })

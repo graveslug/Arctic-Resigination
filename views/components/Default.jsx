@@ -17,7 +17,7 @@ class Default extends React.Component {
 
                 <nav className='navbar is-black' role='navigation' aria-label='main navigation'>
                     <div className='navbar-brand'>
-                    <a href='/records' style={{color: 'white'}}> <h3 className='mt-4 ml-4'>Arctic Resignation</h3> </a>
+                    <a href='/vinyls' style={{color: 'white'}}> <h3 className='mt-4 ml-4'>Arctic Resignation</h3> </a>
 
                             <a role='button' className='navbar-burger burger' aria-label='menu' aria-expanded='false' data-target='navMenu'>
                             <span aria-hidden='true'></span>
@@ -39,7 +39,7 @@ class Default extends React.Component {
                                 <a className='navbar-item'>
                                     About Us
                                 </a>
-                                <a href='/records/new' className='navbar-item'>
+                                <a href='/vinyls/new' className='navbar-item'>
                                     Submit Your Record
                                 </a>
                                 <a className='navbar-item'>

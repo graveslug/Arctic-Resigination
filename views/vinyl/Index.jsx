@@ -21,7 +21,7 @@ class Index extends React.Component {
                  <div className='card is-inline-block mt-1 mx-3 box px-0 pt-0' style={{width: 270}} key={vinyl._id}>
                 <div className='card-image'>
                     <figure className='image is-4by3'>
-                    <a href={`/records/${vinyl._id}`}><img src={`${vinyl.image}`} /></a>
+                    <a href={`/vinyls/${vinyl._id}`}><img src={`${vinyl.image}`} /></a>
                    </figure>
                 </div>
 
