@@ -1,17 +1,8 @@
-document.addEventListener('DOMcontentLoaded', () =>{
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0)
 
-    if($navbarBurgers.length > 0) {
-        $navbarBurgers.forEach( el => {
+const navBarBurger = document.querySelector('.navbar-burger')
+const navMenu = document.querySelector('.navbar-menu')
 
-            el.addEventListener('click', (e) => {
-
-                const target = e.target
-                const $target = document.getElementById('target')
-
-                el.classList.toggle('is-active')
-                $target.classList.toggle('is-active')
-            })
-        })
-    }
-})
+navBarBurger.onclick = (event) => {
+    event.target.classList.toggle('is-active')
+    navMenu.classList.toggle('is-active')
+}
