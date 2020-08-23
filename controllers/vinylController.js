@@ -1,5 +1,5 @@
 const Vinyl = require('../models/vinyl.js')
-const router = require('./restController/js')({
+const router = require('./restController.js')({
     Model: Vinyl,
     ViewPath: 'vinyl',
     Router: require('express').Router(),
