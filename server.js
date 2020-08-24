@@ -26,8 +26,8 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 //checks error&&success
 db.on('error', (err) => console.log(err.message + 'Is mongodb not running?'))
-db.on('connected', ()=> console.log('mongod connected'))
-db.on('disconnected', ()=> console.log('mongo disconnected'))
+db.on('connected', ()=> console.log('Your mongod has connected'))
+db.on('disconnected', ()=> console.log('Your mongod has disconnected'))
 
 //opens connection to mongod
 db.on('open', ()=>{})
@@ -61,5 +61,5 @@ app.use('/vinyls', vinylControl)
 //  Listener      //
 //==================
 app.listen(PORT, () => {
-  console.log('listening on port:', PORT)
+  console.log(`listening on port: ${PORT}`)
 })
