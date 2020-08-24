@@ -7,10 +7,14 @@ module.exports = function({Model, ViewPath, Router, booleanKey, /*pluralizedView
     Router.get('/', (req, res) => {
         //finds all models within Model
         Model.find({}, (error, allModels) =>{
-            //renders the pat to index
-            res.render(`${ViewPath}/Index`, {
-                [ViewPath]: allModels
-            })
+                if(allModels){
+                //renders the pat to index
+                    res.render(`${ViewPath}/Index`, {
+                        [ViewPath]: allModels
+                    })
+                } else {
+                    console.log('index route:' + error.message)
+                }
         })
     })
 
@@ -22,7 +26,12 @@ module.exports = function({Model, ViewPath, Router, booleanKey, /*pluralizedView
     //DELETE
     Router.delete('/:id', (req, res) => {
         //takes the current model by id and removes it from the collection
-        Model.findByIdAndRemove(req.params.id, (error, model) =>{
+        Model.findByIdAndRemove(req.params.id, (error, deletedModel) =>{
+            if(deletedModel){
+                console.log(deletedModel)
+            } else {
+                console.log('delete route:' + error.message)
+            }
             res.redirect(`/${ViewPath}`)
         })
     })
@@ -35,14 +44,26 @@ module.exports = function({Model, ViewPath, Router, booleanKey, /*pluralizedView
         })
         //update the current document with the model
         Model.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            { new : true },
-            (error, updatedModel) =>{
+            {
+                _id: req.params.id
+            },
+            {
+                ...req.body
+            },
+            {
+                new : true
+            },
+            (error, updatedModel) => {
+                if(updatedModel) {
+                    console.log(updatedModel)
+                } else {
+                    console.log('update route:' + error.message)
+                }
                 res.redirect(`/${ViewPath}`)
             }
         )
     })
+
     //CREATE
 
     Router.post('/', (req, res) => {
@@ -51,30 +72,40 @@ module.exports = function({Model, ViewPath, Router, booleanKey, /*pluralizedView
         })
         //Creates the Model for t
         Model.create(req.body, (error, createdModel) => {
-            //hits up the client once created
-            res.redirect(`/${ViewPath}`)
+            error ? console.log('create route:' + error.message) : res.redirect(`/${ViewPath}`)
         })
     })
 
     //EDIT
+
     Router.get('/:id/edit', (req, res) => {
         //Finds the document in the collection
         Model.findById(req.params.id, (error, foundModel) => {
+            if(error){
+                console.log('edit route:' + error.message)
+            } else {
             //renders the edit view and passes the found path
-            res.render(`${ViewPath}/Edit`, {
-                [ViewPath] :foundModel,
-            })
+                res.render(`${ViewPath}/Edit`, {
+                    [ViewPath] :foundModel,
+                })
+            }
         })
     })
 
     //SHOW
+
     Router.get('/:id', (req, res) => {
         //Find the specific document by id
-        Model.findById(req.params.id, (error, foundModel) =>{
-            //render the show route and pass it the foundModel
-            res.render(`${ViewPath}/Show`, {
-                [ViewPath]: foundModel,
-            })
+        Model.findById(req.params.id, (error, foundModel) => {
+            if(error) {
+                console.log('show route:' + error.message)
+                res.sendStatus(500)
+            } else {
+                //render the show route and pass it the foundModel
+                res.render(`${ViewPath}/Show`, {
+                    [ViewPath]: foundModel,
+                })
+            }
         })
     })
     return Router
