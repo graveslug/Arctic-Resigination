@@ -20,7 +20,7 @@ class Edit extends React.Component {
                                     <br />
                                     Image: <input type='text' name='image' defaultValue={item.image} />
                                     <br />
-                                    Vinyl Colour: <input type='text' name='vinylColor' />
+                                    Vinyl Colour: <input type='text' name='vinylColor' defaultValue={item.vinylColor}/>
                                     <br />
                                     Price: <input type='number' name='price' defaultValue={item.price}/>
                                     <br/>
@@ -28,7 +28,7 @@ class Edit extends React.Component {
                                     <br />
                                     Description: <input type='text' name='description' defaultValue={item.description} />
                                     <br />
-                                    In Stock: <input type='checkbox' name='inStock' onChecked='default' />
+                                    In Stock: <input type='checkbox' name='inStock' onChecked='default' defaultValue={item.inStock}/>
                                     <br />
                                     <input className='button is-outline is-small' type='submit' name='' value='Submit' />
                                     <a href={`/vinyls/`}>Back to store</a><br/>
