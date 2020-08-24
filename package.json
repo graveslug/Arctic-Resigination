@@ -12,19 +12,27 @@
     "dev": "nodemon"
   },
   "keywords": [
-      "heroku",
-      "web"
+    "heroku",
+    "web"
   ],
   "author": "Philip Gray",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-react-views": "^0.11.0",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.10.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "validator": "^13.1.1"
   },
   "devDependencies": {},
   "repository": {
