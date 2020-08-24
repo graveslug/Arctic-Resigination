@@ -7,6 +7,7 @@ const app = express()
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const db = mongoose.connection
+const bodyParser = require('body-parser')
 
 //==================
 //  Port          //
@@ -34,6 +35,9 @@ db.on('open', ()=>{})
 //==================
 //  Middleware    //
 //==================
+//bodyparser
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 //use public folder for static assests
 app.use(express.static('public'))
 // populates req.body with parsed info from forms. If no data comes from the forms it will return an empty object {}
