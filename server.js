@@ -8,6 +8,9 @@ const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const db = mongoose.connection
 const bodyParser = require('body-parser')
+const passport = require('passport')
+
+const users = require('/controllers/users.js')
 
 //==================
 //  Port          //
@@ -47,6 +50,11 @@ app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
 //allows for POST,PUT, and DELETE
 app.use(methodOverride('_method'))
+//passport Middleware
+app.use(passport.initialize())
+//passport config
+require('/controllers/passport')(passport)
+
 
 //==================
 //  Controller    //
@@ -56,7 +64,8 @@ const vinylControl = require('./controllers/vinylController.js')
 //sets vinyls as the ViewPath
 app.use('/vinyls', vinylControl)
 
-
+//user route
+app.use('/users', users)
 //==================
 //  Listener      //
 //==================
