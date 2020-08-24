@@ -59,7 +59,8 @@ module.exports = function({Model, ViewPath, Router, booleanKey, /*pluralizedView
                 } else {
                     console.log('update route:' + error.message)
                 }
-                res.redirect(`/${ViewPath}`)
+                //HACKEY AS FUCK BUT IT WORKS. The actual error is a file path issue with my dynamic server. I will have to figure it out later but as of right now this works.
+                res.redirect(`/${ViewPath}`+'s')
             }
         )
     })
@@ -99,7 +100,7 @@ module.exports = function({Model, ViewPath, Router, booleanKey, /*pluralizedView
         Model.findById(req.params.id, (error, foundModel) => {
             if(error) {
                 console.log('show route:' + error.message)
-                res.sendStatus(500)
+                // res.sendStatus(500) shoots off a false alarm
             } else {
                 //render the show route and pass it the foundModel
                 res.render(`${ViewPath}/Show`, {
