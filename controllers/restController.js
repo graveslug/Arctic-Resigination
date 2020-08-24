@@ -60,7 +60,7 @@ module.exports = function({Model, ViewPath, Router, booleanKey, /*pluralizedView
                     console.log('update route:' + error.message)
                 }
                 //HACKEY AS FUCK BUT IT WORKS. The actual error is a file path issue with my dynamic server. I will have to figure it out later but as of right now this works.
-                res.redirect(`/${ViewPath}`+'s')
+                res.redirect(`/${ViewPath}s`)
             }
         )
     })
