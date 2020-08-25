@@ -13,9 +13,9 @@ const userSchema = new mongoose.Schema(
     password: {
         type: String,
         required: true
-    },
-    {
-    timestamps: true
+    }
     })
 const User = mongoose.model('User', userSchema)
 module.exports = User
+console.log(module.exports)
+console.log(User)

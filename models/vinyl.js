@@ -28,7 +28,7 @@ const vinylSchema = new mongoose.Schema(
             required: false
         },
         inStock: Boolean,
-        
+
         currentQuantity: {
             type: Number,
             required: true
@@ -40,8 +40,8 @@ const vinylSchema = new mongoose.Schema(
     },
     {
     timestamps: true
-    });
+    })
 
-const Vinyl = mongoose.model('Vinyl', vinylSchema);
+const Vinyl = mongoose.model('Vinyl', vinylSchema)
 
-module.exports = Vinyl;
+module.exports = Vinyl

@@ -3,24 +3,20 @@ const router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const KEY = { secretOrKey: process.env.PASSPORT_SECRET_KEY }
-
-
+const User = require('../models/user')
 
 //input validation
-const validateRegister = require('./validation/register')
-const validateLogin = require('./validation/login')
-
-//Load User model
-const User = require('./controllers/users')
+const validateRegisterInput = require('../validation/register')
+const validateLoginInputInput = require('../validation/login')
 
 router.post('/register', (req, res) => {
     //Form validation
 
-    const { error, isValid } = validateRegister(req.body)
+    const { error, isValid } = validateRegisterInput(req.body)
 
     //Checks validation
     if (!isValid) {
-        return res.status(400).json(errors)
+        return res.status(400).json(error)
     }
 
     User.findOne({ email : req.body.email }).then(user => {
@@ -52,11 +48,11 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
     //Form Validation
-    const { errors, isValid } = validateLogin(req.body)
+    const { error, isValid } = validateLoginInput(req.body)
 
     //check validation
     if (!isValid) {
-        return res.status(400).json(errors)
+        return res.status(400).json(error)
     }
 
     const email = req.body.email

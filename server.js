@@ -9,8 +9,9 @@ const methodOverride = require('method-override')
 const db = mongoose.connection
 const bodyParser = require('body-parser')
 const passport = require('passport')
-
-const users = require('/controllers/users.js')
+const userControl = require('./controllers/users')
+require('./controllers/passport')(passport)
+const morgan = require('morgan')
 
 //==================
 //  Port          //
@@ -45,15 +46,15 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 // populates req.body with parsed info from forms. If no data comes from the forms it will return an empty object {}
 //The extended: false does not allow nested objected in query strings
+//passport Middleware
+app.use(passport.initialize())
 app.use(express.urlencoded({ extended: false }))
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
 //allows for POST,PUT, and DELETE
 app.use(methodOverride('_method'))
-//passport Middleware
-app.use(passport.initialize())
-//passport config
-require('/controllers/passport')(passport)
+app.use(morgan('dev'))
+
 
 
 //==================
@@ -64,8 +65,9 @@ const vinylControl = require('./controllers/vinylController.js')
 //sets vinyls as the ViewPath
 app.use('/vinyls', vinylControl)
 
-//user route
-app.use('/users', users)
+
+// user route
+app.use('/user', userControl)
 //==================
 //  Listener      //
 //==================

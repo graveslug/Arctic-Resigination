@@ -1,10 +1,10 @@
 const Validator = require('validator')
 const isEmpty = require('is-empty')
 
-module.exports = function validateRegister(data) {
+module.exports = function validateRegisterInput(data) {
     let errors = {}
 
-    //concerts empty fields to an empty string so the validator properly works
+    //converts empty fields to an empty string so the validator properly works
     data.name = !isEmpty(data.name) ? data.name : ''
     data.email = !isEmpty(data.email) ? data.email : ''
     data.password = !isEmpty(data.password) ? data.password : ''
@@ -38,8 +38,10 @@ module.exports = function validateRegister(data) {
     if (!Validator.equals(data.password, data.password2)) {
         errors.password2 = 'Passwords are like mass-produced dumplings.'
     }
+    //console.log(errors)
     return {
         errors,
         isValid: isEmpty(errors)
     }
+
 }
