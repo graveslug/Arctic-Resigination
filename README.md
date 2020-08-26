@@ -21,21 +21,97 @@ mongoose
 Node
 
 
+##Documentation (first draft)
+[Dependencies]
+bcryptjs: Used to hash passwords before storing them in the database
+body-parser: used for incoming request bodies in the Middleware
+is-empty: checks if something is empty. Used with validator.
+validator: used to validate inputs from the user. Like password and confirm password
+jsonwebtoken: used for authorization
+passport: used to authenticate requests with strategies
+passport-jwt: a passport strategies used for athenticating with JWT. Allows us to authenticate endpoints
 
-#Climbing over roadblocks
-1) Heroku was not interacting with my server. The issue came to be a nuance difference between how the mac terminal acts with Github/Heroku. Heroku and Github see a difference between capital letters while mac's terminal assumes they are one of the same. So when I changed the capitalization of a file (as I use mac OS) it assumed it as the same and did not register a difference in the file name change. When I deleted the file and pushed to github the removal of the file then created a new one with the correct lowercase letters and pushed that to github it saw the file difference and accepted the change. In short: renaming a file on mac os doesn't catch capitalization changes in file names. The fix is to remove the file and upload a new one.
+A thorough explianation of the technologies used here. Mostly for my reference because I will forget what I am looking at/used.
 
-2) I realized how the server interacts between files. The server.js contains a single controller imported from the controllers file. This single controller has an address that we do not rewrite anywhere else because if we do repeat its address muiltiple in different controllers times it will stack, for example, record/record/:id instead of record/:id.
+jsonwebtoken (JWT):
+    JWT is a temporary token that is used to authenticate a user. It is a string of integers that make up three parts. Each part is seperated by dot notation. Each string of this line represents three objects. The first string represents The Header. The second represents the payload. The third represents the signature.
+    **This is a throw away example.
+    Example:
+    ##ENCODED
+    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkdyYXZlIFNsdWciLCJpYXQiOjE1MTYyMzkwMjJ9.Wmnqw5Naeb797cFqO8IotFdMywtr6I6Nmtkwl1PXgpE
 
-3) make sure to target the _id instead of the name when wanting to delete a page.
+    [HEADER]
+    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 
-4) edit page was interesting to fix. I had a slight route problem where *Vinyl.findById(req.params._id, (error, vinyl)* should've been written as *Vinyl.findById(req.params.id, (error, vinyl)* being the under score in *_id*. This fixed one problem. The other problem was how I was handling the button/link for edit. Instead of the following:
-<form action={`/records/${oneVinyl._id}/edit`} method='POST'>
-<input className='button' type='submit value={`EDIT`} /> </form> which was only causing a form action to take place and not actually bring me to the edit page. Which is to say that I was only redirecting myself back to my records page instead of my edit page due to the show route setup. So I changed the previous to the following: <a href={`/records/${oneVinyl._id}/edit`}>Edit</a> This simply links me to the edit page of the current id.
+    [PAYLOAD]
+    .eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkdyYXZlIFNsdWciLCJpYXQiOjE1MTYyMzkwMjJ9
+
+    [KEY]
+    .Wmnqw5Naeb797cFqO8IotFdMywtr6I6Nmtkwl1PXgpE
+
+    ##Decoded
+    [HEADER] algorithm & token type
+    {
+        "alg": "HS256",
+        "typ": "JWT"
+    }
+    [PAYLOAD] data
+    {
+        "sub": "1234567890", //the id
+        "name": "Grave Slug", // the name
+        "iat": 1516239022 //date initialized
+    }
+    [KEY]Verify signature
+    HMACSHA256(
+        base64UrlEncode(header) + "." +
+        base64UrlEncode(payload),
+        //your 256bit secret
+)
+
+    The header doesn't have to written of as it is referenced under the hood.
+    The payload can contain anything but be aware that it is not encrypted therefore it should not contain anything of that an attacker could use leverage to get into the account.
+
+    The payload is validated by the receiver and by inspecting the the signature. Since there are many signatures we use the header as that contains the metadata needed.
+
+    Lastly the verified signature is a MAC (message authentication code) which is only produced by somebody in contact of the payload, the header, and the secret key.
+
+    How the signature is used to ensure authentication: When the client submits registration data (via validation/register.js folder)on the authentication server; the server validates the information (username and password combination) and creates a JWT token with the payload containing the users identifier and expiration timestamp.
+
+    Then the server takes a secret key and uses it to sign the header plus the payload and sends it back to the user. In our case we tack on Bearer(more will be said on that below).
+
+    The browser takes the signed JWT and adds it with each HTTP request to our apps server so the JWT acts as a temporary user that replaces the permanent credential that is made up of the username and password combination.
+
+    The only way for an attacker to impersonate a user is steal both their username and their personal login password or steal the secret key from the authentication server. Pause a moment and think about the emails asking for your key. Should you give your key/password to it? Often emails will claim to be the CEO/lead at your company and they are asking for your key because they lost theirs. What would you do? The disappointing part is people fall for it.
+
+##Bearer Token
+A small note one the fromAuthHeaderAsBearerToken (or "Bearer" token from now on.)
+    The bearer token used in this application grants access to authorized resources for the client rather than use the resources of the client (username and password for everything they request).
+
+    A bearer token is a security token that any party in possession of (a bearer) can use the token in anyway that any other party in possession can. Using this token does not require a bearer to prove possession of the key. To prevent misuse the bearer tokens need to be protected in storage and in transport.
+
+##bcryptjs
+    bcryptjs stands for the version of crypt. In this implementation I used the Blowfish-based crypt.
+    The bcryptjs incorporates a salt to protect against rainbow table attacks.  
+    In short: a rainbow table attack is an attack that uses a database of passwords with their corresponding hashes to crack a password. It is more effect than brute-force methods. However salt usually prevents the rainbow table attacks by adding a randomized input to the hash.
+
+    Since hash functions are one way meaning they cannot be decrypted the usage of salt adds another layer of input to protect the hash from being discovered. The salt acts as a safeguard since passwords are not stored in the database.
+
+    bcrypt is an adapative function which means that overtime the iteration count can be increased to make it slower, so it remains resistance to brute-force search attacks even if there is an increase in cpu power.
+    Below is a breakdown of the hash.
+    $2b$[cost]$[22 character salt][31 character hash]
+
+    further breakdown:
+    alg:$2a$ //The has algorithm indentifier//
+    cost:10  //Cost factor (2^10
+    salt: N9qo8uLOickgx2ZMRZoMye //(128-bit) salt, base64 encoded to 22 characters
+    Hash: IjZAgcfl7p92ldGxad68LJZdL17lhWy //(192-bit) hash, base64 encoded to 31 characters
 
 
-#Thank you for your help
-Philip Gray
+
+
+
+
+#Thank you for your help and kindess
 Viktor Moberg
 Francesco Vertemati
 Mike Hansen
@@ -43,3 +119,4 @@ Neil Freeman
 Ira Herman
 Arthur Bernier Jr
 The Endless Amount of Albums I burned Through
+The Endless tutorials, videos, and documentation that contradict each other to no end.
