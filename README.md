@@ -91,7 +91,7 @@ A small note one the fromAuthHeaderAsBearerToken (or "Bearer" token from now on.
 
 ##bcryptjs
     bcryptjs stands for the version of crypt. In this implementation I used the Blowfish-based crypt.
-    The bcryptjs incorporates a salt to protect against rainbow table attacks.  
+    The bcryptjs incorporates a salt to protect against rainbow table attacks. However this is a simple implentation of bcryptjs and there are better ways to implement it that can feed to the hash salt multiple times to produce a strong hash.
     In short: a rainbow table attack is an attack that uses a database of passwords with their corresponding hashes to crack a password. It is more effect than brute-force methods. However salt usually prevents the rainbow table attacks by adding a randomized input to the hash.
 
     Since hash functions are one way meaning they cannot be decrypted the usage of salt adds another layer of input to protect the hash from being discovered. The salt acts as a safeguard since passwords are not stored in the database.
