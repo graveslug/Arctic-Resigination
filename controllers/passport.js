@@ -2,7 +2,7 @@
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
 const mongoose = require('mongoose')
-const User = mongoose.model('User')
+const User = require('../models/user')
 const KEY = { secretOrKey: process.env.PASSPORT_SECRET_KEY }
 
 const opts = {}
