@@ -52,7 +52,7 @@ class Show extends React.Component {
             className='button' type='submit' value={`DELETE`} disabled/>
           </form>
 
-           <a href={`/vinyls/${oneVinyl._id}/edit`}>Edit</a>
+           <a href={`/vinyls/${oneVinyl._id}/edit`} disabled>Edit</a>
       </div>
       </Default>
     )

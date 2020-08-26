@@ -9,7 +9,6 @@ const methodOverride = require('method-override')
 const db = mongoose.connection
 const bodyParser = require('body-parser')
 const passport = require('passport')
-const userControl = require('./controllers/users')
 require('./controllers/passport')(passport)
 const morgan = require('morgan')
 
@@ -65,7 +64,8 @@ const vinylControl = require('./controllers/vinylController.js')
 //sets vinyls as the ViewPath
 app.use('/vinyls', vinylControl)
 
-
+//calls for user route
+const userControl = require('./controllers/users')
 // user route
 app.use('/user', userControl)
 //==================
