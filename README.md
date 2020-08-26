@@ -97,21 +97,26 @@ A small note one the fromAuthHeaderAsBearerToken (or "Bearer" token from now on.
     Since hash functions are one way meaning they cannot be decrypted the usage of salt adds another layer of input to protect the hash from being discovered. The salt acts as a safeguard since passwords are not stored in the database.
 
     bcrypt is an adapative function which means that overtime the iteration count can be increased to make it slower, so it remains resistance to brute-force search attacks even if there is an increase in cpu power.
+
     Below is a breakdown of the hash.
     $2b$[cost]$[22 character salt][31 character hash]
 
     further breakdown:
     alg:$2a$ //The has algorithm indentifier//
-    cost:10  //Cost factor (2^10
+    cost:10  //Cost factor (2^10)
     salt: N9qo8uLOickgx2ZMRZoMye //(128-bit) salt, base64 encoded to 22 characters
     Hash: IjZAgcfl7p92ldGxad68LJZdL17lhWy //(192-bit) hash, base64 encoded to 31 characters
 
+##is-empty
+    Checks if a value is empty. That is it. Useful in combination with validator.
+
+##Validator
+    A simple tool that goes through all inputs to check if they meet the validation requirements that we had setup. This in general helps prevent the man in the middle attacks. It changes everything to a string. This is useful for username and password creation. It can go further and sanitize inputs by trimming. In this project I used it to set a min and max of a password size. You can find its usage in the validation folder where I setup parameters that the user must follow in order for their submission to be successful.
 
 
 
 
-
-#Thank you for your help and kindess
+#Thank you for your help,
 Viktor Moberg
 Francesco Vertemati
 Mike Hansen
@@ -120,3 +125,4 @@ Ira Herman
 Arthur Bernier Jr
 The Endless Amount of Albums I burned Through
 The Endless tutorials, videos, and documentation that contradict each other to no end.
+And the friends that stayed up late with me at night to talk about weird stuff, troubles, sharing tons of memes, and talking about neuroscience.
